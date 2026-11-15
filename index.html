@@ -3,261 +3,109 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>আমার হিসাব - মহাদেবপুর</title>
+<title>আমার হিসাব - প্রিমিয়াম</title>
 <style>
-*{box-sizing:border-box} body{font-family:sans-serif;margin:0;background:#f2f2f2;padding:10px}
-h2{font-size:19px} .top{display:flex;gap:5px;overflow:auto;margin-bottom:10px;padding-bottom:5px}
-.tabbtn{padding:10px 14px;border:none;border-radius:20px;background:#ddd;white-space:nowrap;font-weight:bold}
-.tabbtn.active{background:#007bff;color:#fff}
-.card{background:#fff;padding:12px;border-radius:10px;margin-bottom:10px;border:1px solid #ddd}
-input,select,button{width:100%;padding:9px;margin:4px 0;border:1px solid #ccc;border-radius:6px;font-size:15px}
-button.btn{background:#007bff;color:#fff;border:none;font-weight:bold;cursor:pointer}
-button.green{background:#28a745;color:#fff;border:none;font-weight:bold;cursor:pointer}
-button.red{background:#dc3545;color:#fff;border:none}
-table{width:100%;border-collapse:collapse;font-size:13px} th,td{border:1px solid #ddd;padding:6px;text-align:left} th{background:#eee}
-.dash{display:grid;grid-template-columns:1fr 1fr;gap:8px} .box{background:#fff;padding:12px;border-radius:10px;text-align:center;border:1px solid #ddd} .box b{font-size:20px;display:block}
-#msg{color:green;font-weight:bold;text-align:center} #err{color:red;font-weight:bold;text-align:center}
-.hidden{display:none}
+*{box-sizing:border-box} body{font-family:'Hind Siliguri',sans-serif;margin:0;background:#eef2ff;padding:0 10px 90px}
+.header{background:linear-gradient(135deg,#4f46e5,#7c3aed,#db2777);color:#fff;padding:18px 14px 22px;border-radius:0 0 22px 22px;text-align:center;box-shadow:0 8px 20px rgba(0,0,0,.15)}
+.header h1{margin:0;font-size:22px} .header p{margin:4px 0 0;opacity:.9;font-size:13px}
+.nav{display:flex;gap:6px;overflow:auto;margin:12px 0;padding-bottom:4px;position:sticky;top:0;z-index:10}
+.nav button{flex:1;min-width:78px;padding:11px 6px;border:none;border-radius:14px;background:#fff;font-weight:700;font-size:13px;box-shadow:0 2px 8px rgba(0,0,0,.08);cursor:pointer}
+.nav button.active{background:#4f46e5;color:#fff;transform:scale(1.03)}
+.dash{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.card2{background:#fff;padding:14px;border-radius:18px;box-shadow:0 4px 14px rgba(0,0,0,.07);margin-bottom:12px;border:1px solid #eef0ff}
+.card2 h3{margin:0 0 10px;font-size:16px}
+.box{background:#fff;padding:14px;border-radius:18px;text-align:center;box-shadow:0 4px 14px rgba(0,0,0,.07);border-top:4px solid #4f46e5}
+.box small{color:#666;font-size:12px} .box b{font-size:22px;display:block;margin-top:4px}
+.box.green{border-top-color:#16a34a} .box.orange{border-top-color:#ea580c} .box.pink{border-top-color:#db2777}
+input,select{width:100%;padding:12px;margin:6px 0;border:1.5px solid #e2e8f0;border-radius:12px;font-size:15px;background:#f8fafc;outline:none}
+input:focus,select:focus{border-color:#4f46e5;background:#fff}
+.btn{width:100%;padding:13px;border:none;border-radius:12px;font-weight:800;font-size:15px;cursor:pointer;color:#fff;background:linear-gradient(90deg,#4f46e5,#7c3aed)}
+.btn.green{background:linear-gradient(90deg,#16a34a,#22c55e)} .btn.gray{background:#64748b}
+table{width:100%;border-collapse:collapse;font-size:13px} th,td{padding:8px;border-bottom:1px solid #eee;text-align:left} th{background:#f1f5f9}
+.badge{padding:4px 8px;border-radius:20px;font-size:11px;font-weight:700;background:#dcfce7;color:#166534}
+#msg{color:#16a34a;font-weight:700;text-align:center} #err{color:red;font-weight:700;text-align:center}
+.hidden{display:none} .flex{display:flex;gap:8px} .flex>*{flex:1}
+.totalBox{background:linear-gradient(135deg,#0f172a,#4f46e5);color:#fff;padding:14px;border-radius:14px;text-align:center}
+.totalBox b{font-size:24px}
 </style>
 </head>
 <body>
-<h2 style="text-align:center">📒 আমার হিসাব - মহাদেবপুর</h2>
-<div class="top">
-<button class="tabbtn active" onclick="showTab('dash',this)">🏠 ড্যাশবোর্ড</button>
-<button class="tabbtn" onclick="showTab('journal',this)">📝 জার্নাল</button>
-<button class="tabbtn" onclick="showTab('customer',this)">👥 কাস্টমার</button>
-<button class="tabbtn" onclick="showTab('pos',this)">🪵 কাঠ বিক্রি</button>
-<button class="tabbtn" onclick="showTab('dhan',this)">🌾 ধান কেনা-বেচা</button>
+<div class="header"><h1>📒 আমার হিসাব</h1><p>মহাদেবপুর • প্রিমিয়াম হিসাব খাতা • বস্তা হিসাব</p></div>
+<div class="nav">
+<button class="active" onclick="showTab('dash',this)">🏠<br>ড্যাশবোর্ড</button>
+<button onclick="showTab('journal',this)">📝<br>জার্নাল</button>
+<button onclick="showTab('customer',this)">👥<br>কাস্টমার</button>
+<button onclick="showTab('pos',this)">🪵<br>কাঠ</button>
+<button onclick="showTab('dhan',this)">🌾<br>ধান</button>
 </div>
 <div id="tab-dash">
 <div class="dash">
-<div class="box">আজকে বিক্রি<b id="todaySale">0</b></div>
-<div class="box">ক্যাশে আছে<b id="cashBal">0</b></div>
-<div class="box">কাস্টমার পাবে<b id="totalDue">0</b></div>
-<div class="box">মোট এন্ট্রি<b id="totalEntry">0</b></div>
+<div class="box">📈 আজ বিক্রি<small>মোট বিক্রি</small><b id="todaySale">0 ৳</b></div>
+<div class="box green">💰 ক্যাশে আছে<small>হাতে নগদ</small><b id="cashBal">0 ৳</b></div>
+<div class="box orange">🧾 বাকি পাবো<small>কাস্টমার দিবে</small><b id="totalDue">0 ৳</b></div>
+<div class="box pink">🧾 এন্ট্রি<small>মোট হিসাব</small><b id="totalEntry">0</b></div>
 </div>
-<div class="card"><h2>সাম্প্রতিক হিসাব</h2><div id="recentList"></div></div>
+<div class="card2"><h3>🕒 সাম্প্রতিক হিসাব</h3><div id="recentList"></div></div>
 </div>
 <div id="tab-journal" class="hidden">
-<div class="card">
-<h2>নতুন জার্নাল - ডেবিট = ক্রেডিট হতে হবে</h2>
+<div class="card2"><h3>📝 নতুন জার্নাল - ডেবিট = ক্রেডিট</h3>
 <label>তারিখ<input type="date" id="entryDate"></label>
 <label>বিবরণ<input type="text" id="description" placeholder="যেমন: নগদে কাঠ বিক্রি"></label>
 <div id="lines"></div>
-<button class="btn" onclick="addLine()" style="background:#6c757d">+ লাইন যোগ করুন</button>
+<button class="btn gray" onclick="addLine()" style="margin-bottom:8px">+ লাইন যোগ করুন</button>
 <button class="btn" onclick="saveJournal()">💾 সেভ করুন</button>
-<div id="msg"></div><div id="err"></div>
-</div>
-<div class="card"><h2>জার্নাল লিস্ট</h2><div style="overflow:auto"><table><thead><tr><th>তারিখ</th><th>বিবরণ</th><th>খাতা</th><th>ডেবিট</th><th>ক্রেডিট</th></tr></thead><tbody id="journalBody"></tbody></table></div></div>
+<div id="msg"></div><div id="err"></div></div>
+<div class="card2"><h3>📋 জার্নাল লিস্ট</h3><div style="overflow:auto"><table><thead><tr><th>তারিখ</th><th>বিবরণ</th><th>খাতা</th><th>ডেবিট</th><th>ক্রেডিট</th></tr></thead><tbody id="journalBody"></tbody></table></div></div>
 </div>
 <div id="tab-customer" class="hidden">
-<div class="card">
-<h2>নতুন কাস্টমার</h2>
-<input id="custName" placeholder="নাম">
-<input id="custPhone" placeholder="মোবাইল">
+<div class="card2"><h3>👥 নতুন কাস্টমার</h3>
+<input id="custName" placeholder="নাম - যেমন: রহিম মিয়া">
+<input id="custPhone" placeholder="মোবাইল - 017...">
 <input id="custVillage" placeholder="গ্রাম - মহাদেবপুর">
-<button class="green" onclick="addCustomer()">+ কাস্টমার যোগ করুন</button>
-</div>
-<div class="card"><h2>কাস্টমার লিস্ট - কে কত বাকি</h2><div id="custList"></div></div>
+<button class="btn green" onclick="addCustomer()">+ কাস্টমার যোগ করুন</button></div>
+<div class="card2"><h3>কাস্টমার লিস্ট - কে কত বাকি</h3><div id="custList"></div></div>
 </div>
 <div id="tab-pos" class="hidden">
-<div class="card">
-<h2>🪵 কাঠ বিক্রি - 37.5 KG = 1 মন</h2>
+<div class="card2"><h3>🪵 কাঠ বিক্রি - 37.5 KG = 1 মন</h3>
 <label>কাস্টমার<select id="posCustomer"></select></label>
 <label>প্রোডাক্ট<select id="posProduct" onchange="calcPOS()"></select></label>
-<label>KG লিখুন<input type="number" id="posKg" placeholder="KG" oninput="calcPOS()"></label>
-<label>মন<input type="text" id="posMon" readonly></label>
+<div class="flex"><div><label>KG<input type="number" id="posKg" placeholder="KG" oninput="calcPOS()"></label></div><div><label>মন<input type="text" id="posMon" readonly></label></div></div>
 <label>দর / মন<input type="number" id="posRate" oninput="calcPOS()"></label>
-<label>মোট টাকা<input type="text" id="posTotal" readonly style="font-weight:bold;font-size:18px"></label>
-<label>নগদ দিলো<input type="number" id="posCash" placeholder="কত টাকা নগদ দিলো" oninput="calcPOS()"></label>
-<label>বাকি থাকলো<input type="text" id="posDue" readonly></label>
-<button class="green" onclick="saveSale()">✅ বিক্রি সেভ করুন</button>
-<div id="posMsg"></div>
-</div>
+<div class="totalBox">মোট টাকা<br><b id="posTotal">0 টাকা</b></div>
+<div class="flex"><div><label>নগদ দিলো<input type="number" id="posCash" placeholder="নগদ" oninput="calcPOS()"></label></div><div><label>বাকি<input type="text" id="posDue" readonly></label></div></div>
+<button class="btn green" onclick="saveSale()">✅ বিক্রি সেভ করুন</button><div id="posMsg"></div></div>
 </div>
 <div id="tab-dhan" class="hidden">
-<div class="card">
-<h2>🌾 ধান কেনা-বেচা - 40 KG = 1 মন</h2>
-<label>কি করবেন?<select id="dhanType"><option value="buy">কিনলাম - কিনা</option><option value="sale">বেচলাম - বিক্রি</option></select></label>
-<label>কার সাথে? <select id="dhanParty"></select></label>
+<div class="card2"><h3>🌾 ধান কেনা-বেচা - 40 KG = 1 মন</h3>
+<label>কি করবেন?<select id="dhanType"><option value="buy">কিনলাম</option><option value="sale">বেচলাম</option></select></label>
+<label>কার সাথে?<select id="dhanParty"></select></label>
 <label>কোন ধান?<select id="dhanProduct" onchange="calcDhan()"><option value="কাটারি ধান" data-price="1350">কাটারি ধান</option><option value="মিনিকেট ধান" data-price="1250">মিনিকেট ধান</option><option value="আটাশ ধান" data-price="1150">আটাশ ধান</option><option value="ব্রি-২৮ ধান" data-price="1100">ব্রি-২৮ ধান</option></select></label>
-<label>KG লিখুন <input type="number" id="dhanKg" placeholder="যেমন: 800" oninput="calcDhan()"></label>
-<label>মন <input type="text" id="dhanMon" readonly></label>
-<label>দর / মন <input type="number" id="dhanRate" oninput="calcDhan()"></label>
-<label>ভাড়া / লেবার খরচ <input type="number" id="dhanCost" value="0" oninput="calcDhan()"></label>
-<label>মোট টাকা <input type="text" id="dhanTotal" readonly style="font-weight:bold;font-size:18px"></label>
-<label>নগদ দিলাম / পাইলাম <input type="number" id="dhanCash" placeholder="নগদ কত" oninput="calcDhan()"></label>
-<label>বাকি <input type="text" id="dhanDue" readonly></label>
-<button class="green" onclick="saveDhan()">✅ সেভ করুন</button>
-<div id="dhanMsg"></div>
-</div>
+<div class="flex"><div><label>KG<input type="number" id="dhanKg" placeholder="800" oninput="calcDhan()"></label></div><div><label>মন<input type="text" id="dhanMon" readonly></label></div></div>
+<label>দর / মন<input type="number" id="dhanRate" oninput="calcDhan()"></label>
+<label>ভাড়া / লেবার<input type="number" id="dhanCost" value="0" oninput="calcDhan()"></label>
+<div class="totalBox">মোট টাকা<br><b id="dhanTotal">0 টাকা</b></div>
+<div class="flex"><div><label>নগদ<input type="number" id="dhanCash" placeholder="নগদ" oninput="calcDhan()"></label></div><div><label>বাকি<input type="text" id="dhanDue" readonly></label></div></div>
+<button class="btn green" onclick="saveDhan()">✅ সেভ করুন</button><div id="dhanMsg"></div></div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-const SUPABASE_URL = "https://itfagvgggndltwdlbnph.supabase.co";
-const SUPABASE_KEY = "sb_publishable_tAetMrjqhCrwI2f87oIwCA_6pXxnxir";
-const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-let accounts=[], products=[], customers=[];
-function showTab(id,btn){
- document.querySelectorAll('[id^="tab-"]').forEach(e=>e.classList.add('hidden'));
- document.getElementById('tab-'+id).classList.remove('hidden');
- document.querySelectorAll('.tabbtn').forEach(b=>b.classList.remove('active'));
- btn.classList.add('active');
- if(id==='dash') loadDashboard();
- if(id==='journal') loadJournal();
- if(id==='customer') loadCustomers();
- if(id==='pos') loadPOS();
- if(id==='dhan') calcDhan();
-}
-async function loadAll(){
- const a=await supabaseClient.from('accounts').select('*').order('id'); accounts=a.data||[];
- const c=await supabaseClient.from('customers').select('*').order('id'); customers=c.data||[];
- const p=await supabaseClient.from('products').select('*').order('id'); products=p.data||[];
- document.getElementById('lines').innerHTML=''; addLine(); addLine();
- loadDashboard(); loadJournal(); loadCustomers(); loadPOS(); calcDhan();
-}
-function addLine(){
- const div=document.createElement('div'); div.className='card'; div.style.padding='8px';
- div.innerHTML=`<select class="acc"><option value="">-- খাতা --</option>${accounts.map(x=>`<option value="${x.id}">${x.name}</option>`).join('')}</select><input type="number" class="debit" placeholder="ডেবিট" value="0"><input type="number" class="credit" placeholder="ক্রেডিট" value="0"><button class="red" onclick="this.parentElement.remove()">মুছুন ✕</button>`;
- document.getElementById('lines').appendChild(div);
-}
-async function saveJournal(){
- document.getElementById('msg').textContent=''; document.getElementById('err').textContent='';
- const date=document.getElementById('entryDate').value; const desc=document.getElementById('description').value;
- if(!date){document.getElementById('err').textContent='তারিখ দেন';return;}
- let lines=[], td=0,tc=0;
- document.querySelectorAll('#lines .card').forEach(r=>{
-  const acc=r.querySelector('.acc').value; const d=parseFloat(r.querySelector('.debit').value)||0; const c=parseFloat(r.querySelector('.credit').value)||0;
-  if(acc&&(d>0||c>0)){lines.push({account_id:parseInt(acc),debit:d,credit:c}); td+=d; tc+=c;}
- });
- if(lines.length<2){document.getElementById('err').textContent='কমপক্ষে ২টা লাইন লাগবে';return;}
- if(Math.abs(td-tc)>0.01){document.getElementById('err').textContent=`ডেবিট ${td} আর ক্রেডিট ${tc} সমান না!`;return;}
- const {data:j,error:je}=await supabaseClient.from('journals').insert({entry_date:date,description:desc}).select().single();
- if(je){document.getElementById('err').textContent=je.message;return;}
- const payload=lines.map(l=>({...l,journal_id:j.id}));
- const {error:le}=await supabaseClient.from('journal_lines').insert(payload);
- if(le){document.getElementById('err').textContent=le.message;return;}
- document.getElementById('msg').textContent='✅ সেভ হয়েছে!';
- document.getElementById('description').value=''; document.getElementById('lines').innerHTML=''; addLine(); addLine(); loadJournal(); loadDashboard();
-}
-async function loadJournal(){
- const {data}=await supabaseClient.from('journal_lines').select('debit,credit,accounts(name),journals(entry_date,description)').order('id',{ascending:false}).limit(30);
- if(!data) return;
- document.getElementById('journalBody').innerHTML=data.map(r=>`<tr><td>${r.journals?.entry_date||''}</td><td>${r.journals?.description||''}</td><td>${r.accounts?.name||''}</td><td>${r.debit>0?r.debit:''}</td><td>${r.credit>0?r.credit:''}</td></tr>`).join('');
- document.getElementById('totalEntry').textContent=data.length;
- document.getElementById('recentList').innerHTML=data.slice(0,5).map(r=>`<div style="border-bottom:1px solid #eee;padding:6px">${r.journals?.entry_date} - ${r.journals?.description} - ${r.accounts?.name} : ${r.debit||r.credit} টাকা</div>`).join('');
-}
-async function loadCustomers(){
- const {data}=await supabaseClient.from('customers').select('*').order('id');
- document.getElementById('custList').innerHTML=(data||[]).map(c=>`<div style="border-bottom:1px solid #eee;padding:8px;display:flex;justify-content:space-between"><span><b>${c.name}</b><br><small>${c.phone||''} - ${c.village||''}</small></span><b>${c.total_due||0} টাকা বাকি</b></div>`).join('');
- document.getElementById('posCustomer').innerHTML=(data||[]).map(c=>`<option value="${c.id}">${c.name}</option>`).join('');
- document.getElementById('dhanParty').innerHTML=(data||[]).map(c=>`<option value="${c.id}">${c.name}</option>`).join('');
-}
-async function addCustomer(){
- const name=document.getElementById('custName').value; if(!name){alert('নাম দেন');return;}
- await supabaseClient.from('customers').insert({name,phone:document.getElementById('custPhone').value,village:document.getElementById('custVillage').value});
- document.getElementById('custName').value=''; document.getElementById('custPhone').value=''; document.getElementById('custVillage').value='';
- loadCustomers();
-}
-function loadPOS(){
- document.getElementById('posProduct').innerHTML=products.map(p=>`<option value="${p.id}" data-mon="${p.kg_per_mon}" data-price="${p.sell_price}">${p.name} - ${p.sell_price}/মন</option>`).join('');
- calcPOS();
-}
-function calcPOS(){
- const sel=document.getElementById('posProduct'); if(!sel.value) return;
- const opt=sel.selectedOptions[0]; const kgPerMon=parseFloat(opt.dataset.mon)||37.5;
- const kg=parseFloat(document.getElementById('posKg').value)||0;
- const mon=kg/kgPerMon;
- let rate=parseFloat(document.getElementById('posRate').value); if(!rate){rate=parseFloat(opt.dataset.price); document.getElementById('posRate').value=rate;}
- const total=Math.round(mon*rate);
- document.getElementById('posMon').value=mon.toFixed(2)+' মন';
- document.getElementById('posTotal').value=total+' টাকা';
- const cash=parseFloat(document.getElementById('posCash').value)||0;
- document.getElementById('posDue').value=(total-cash)+' টাকা বাকি';
-}
-async function saveSale(){
- const custId=document.getElementById('posCustomer').value;
- const prodId=document.getElementById('posProduct').value;
- const kg=parseFloat(document.getElementById('posKg').value)||0;
- const total=parseFloat(document.getElementById('posTotal').value)||0;
- const cash=parseFloat(document.getElementById('posCash').value)||0;
- const due=total-cash;
- const prod=products.find(p=>p.id==prodId);
- if(!kg||!total){alert('KG দেন');return;}
- const today=new Date().toISOString().slice(0,10);
- const {data:j}=await supabaseClient.from('journals').insert({entry_date:today,description:`${prod?.name} বিক্রি - ${kg} KG`}).select().single();
- let lines=[];
- const cashAcc=accounts.find(a=>a.name.includes('Cash'));
- const dueAcc=accounts.find(a=>a.name.includes('বাকি পাবো'));
- const saleAcc=accounts.find(a=>a.name.includes('বিক্রয়'));
- if(cash>0) lines.push({journal_id:j.id,account_id:cashAcc.id,debit:cash,credit:0});
- if(due>0) lines.push({journal_id:j.id,account_id:dueAcc.id,debit:due,credit:0});
- lines.push({journal_id:j.id,account_id:saleAcc.id,debit:0,credit:total});
- await supabaseClient.from('journal_lines').insert(lines);
- const cust=customers.find(c=>c.id==custId);
- if(cust) await supabaseClient.from('customers').update({total_due:(cust?.total_due||0)+due}).eq('id',custId);
- document.getElementById('posMsg').innerHTML='<b style="color:green">✅ বিক্রি সেভ হয়েছে!</b>';
- document.getElementById('posKg').value=''; document.getElementById('posCash').value='';
- loadAll();
-}
-function calcDhan(){
-  const kg = parseFloat(document.getElementById('dhanKg').value) || 0;
-  const mon = kg / 40;
-  document.getElementById('dhanMon').value = mon.toFixed(2) + ' মন';
-  let rate = parseFloat(document.getElementById('dhanRate').value);
-  if(!rate){
-    const sel = document.getElementById('dhanProduct');
-    if(sel && sel.selectedOptions[0]){ rate = parseFloat(sel.selectedOptions[0].dataset.price); document.getElementById('dhanRate').value = rate; }
-  }
-  const cost = parseFloat(document.getElementById('dhanCost').value) || 0;
-  const total = Math.round(mon * (rate||0) + cost);
-  document.getElementById('dhanTotal').value = total + ' টাকা';
-  const cash = parseFloat(document.getElementById('dhanCash').value) || 0;
-  document.getElementById('dhanDue').value = (total - cash) + ' টাকা বাকি';
-}
-async function saveDhan(){
-  const type = document.getElementById('dhanType').value;
-  const kg = parseFloat(document.getElementById('dhanKg').value) || 0;
-  const total = parseFloat(document.getElementById('dhanTotal').value) || 0;
-  const cash = parseFloat(document.getElementById('dhanCash').value) || 0;
-  const due = total - cash;
-  const prodName = document.getElementById('dhanProduct').value;
-  const today = new Date().toISOString().slice(0,10);
-  if(!kg){ alert('KG দেন'); return; }
-  const { data: j } = await supabaseClient.from('journals').insert({entry_date: today, description: `${type==='buy'?'কিনা':'বিক্রি'} - ${prodName} - ${kg} KG`}).select().single();
-  const cashAcc = accounts.find(a=>a.name.includes('Cash'));
-  const dueAcc = accounts.find(a=>a.name.includes('বাকি পাবো'));
-  const buyAcc = accounts.find(a=>a.name.includes('কেনা'));
-  const saleAcc = accounts.find(a=>a.name.includes('বিক্রয়'));
-  let lines = [];
-  if(type === 'buy'){
-    lines.push({journal_id: j.id, account_id: buyAcc.id, debit: total, credit: 0});
-    lines.push({journal_id: j.id, account_id: cashAcc.id, debit: 0, credit: total});
-  } else {
-    if(cash>0) lines.push({journal_id: j.id, account_id: cashAcc.id, debit: cash, credit: 0});
-    if(due>0) lines.push({journal_id: j.id, account_id: dueAcc.id, debit: due, credit: 0});
-    lines.push({journal_id: j.id, account_id: saleAcc.id, debit: 0, credit: total});
-  }
-  await supabaseClient.from('journal_lines').insert(lines);
-  document.getElementById('dhanMsg').innerHTML = '<b style="color:green">✅ সেভ হয়েছে!</b>';
-  document.getElementById('dhanKg').value=''; document.getElementById('dhanCash').value='';
-  loadAll();
-}
-async function loadDashboard(){
- const {data}=await supabaseClient.from('journal_lines').select('debit,credit,accounts(name),journals(entry_date)').order('id',{ascending:false}).limit(100);
- let sale=0, cash=0;
- (data||[]).forEach(r=>{
-   if(r.accounts?.name?.includes('বিক্রয়')) sale+=r.credit||0;
-   if(r.accounts?.name?.includes('Cash')) cash+=(r.debit||0)-(r.credit||0);
- });
- document.getElementById('todaySale').textContent=sale;
- document.getElementById('cashBal').textContent=cash;
- const {data:cust}=await supabaseClient.from('customers').select('total_due');
- let due=0; (cust||[]).forEach(c=>due+=c.total_due||0);
- document.getElementById('totalDue').textContent=due;
-}
-document.getElementById('entryDate').valueAsDate=new Date();
-loadAll();
+const SUPABASE_URL="https://itfagvgggndltwdlbnph.supabase.co"; const SUPABASE_KEY="sb_publishable_tAetMrjqhCrwI2f87oIwCA_6pXxnxir";
+const supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+let accounts=[],products=[],customers=[];
+function showTab(id,btn){document.querySelectorAll('[id^="tab-"]').forEach(e=>e.classList.add('hidden'));document.getElementById('tab-'+id).classList.remove('hidden');document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');if(id==='dash')loadDashboard();if(id==='journal')loadJournal();if(id==='customer')loadCustomers();if(id==='pos')loadPOS();if(id==='dhan')calcDhan();}
+async function loadAll(){const a=await supabaseClient.from('accounts').select('*').order('id');accounts=a.data||[];const c=await supabaseClient.from('customers').select('*').order('id');customers=c.data||[];const p=await supabaseClient.from('products').select('*').order('id');products=p.data||[];document.getElementById('lines').innerHTML='';addLine();addLine();loadDashboard();loadJournal();loadCustomers();loadPOS();calcDhan();}
+function addLine(){const div=document.createElement('div');div.style.cssText='background:#f8fafc;padding:10px;border-radius:12px;margin-bottom:8px';div.innerHTML=`<select class="acc"><option value="">-- খাতা --</option>${accounts.map(x=>`<option value="${x.id}">${x.name}</option>`).join('')}</select><div class="flex"><input type="number" class="debit" placeholder="ডেবিট" value="0"><input type="number" class="credit" placeholder="ক্রেডিট" value="0"></div><button onclick="this.parentElement.remove()" style="background:#fee2e2;border:none;padding:8px;border-radius:8px;width:100%">মুছুন ✕</button>`;document.getElementById('lines').appendChild(div);}
+async function saveJournal(){document.getElementById('msg').textContent='';document.getElementById('err').textContent='';const date=document.getElementById('entryDate').value;const desc=document.getElementById('description').value;if(!date){document.getElementById('err').textContent='তারিখ দেন';return;}let lines=[],td=0,tc=0;document.querySelectorAll('#lines > div').forEach(r=>{const acc=r.querySelector('.acc').value;const d=parseFloat(r.querySelector('.debit').value)||0;const c=parseFloat(r.querySelector('.credit').value)||0;if(acc&&(d>0||c>0)){lines.push({account_id:parseInt(acc),debit:d,credit:c});td+=d;tc+=c;}});if(lines.length<2){document.getElementById('err').textContent='কমপক্ষে ২টা লাইন লাগবে';return;}if(Math.abs(td-tc)>0.01){document.getElementById('err').textContent=`ডেবিট ${td} আর ক্রেডিট ${tc} সমান না!`;return;}const {data:j,error:je}=await supabaseClient.from('journals').insert({entry_date:date,description:desc}).select().single();if(je){document.getElementById('err').textContent=je.message;return;}const payload=lines.map(l=>({...l,journal_id:j.id}));const {error:le}=await supabaseClient.from('journal_lines').insert(payload);if(le){document.getElementById('err').textContent=le.message;return;}document.getElementById('msg').textContent='✅ সেভ হয়েছে!';document.getElementById('description').value='';document.getElementById('lines').innerHTML='';addLine();addLine();loadJournal();loadDashboard();}
+async function loadJournal(){const {data}=await supabaseClient.from('journal_lines').select('debit,credit,accounts(name),journals(entry_date,description)').order('id',{ascending:false}).limit(30);if(!data)return;document.getElementById('journalBody').innerHTML=data.map(r=>`<tr><td>${r.journals?.entry_date||''}</td><td>${r.journals?.description||''}</td><td>${r.accounts?.name||''}</td><td>${r.debit>0?r.debit:''}</td><td>${r.credit>0?r.credit:''}</td></tr>`).join('');document.getElementById('totalEntry').textContent=data.length;document.getElementById('recentList').innerHTML=data.slice(0,5).map(r=>`<div style="border-bottom:1px solid #eee;padding:8px;display:flex;justify-content:space-between"><span>${r.journals?.entry_date} - ${r.journals?.description}</span><b>${r.debit||r.credit} ৳</b></div>`).join('');}
+async function loadCustomers(){const {data}=await supabaseClient.from('customers').select('*').order('id');document.getElementById('custList').innerHTML=(data||[]).map(c=>`<div style="border-bottom:1px solid #eee;padding:10px;display:flex;justify-content:space-between;align-items:center"><span><b>${c.name}</b><br><small>${c.phone||''} - ${c.village||''}</small></span><span class="badge">${c.total_due||0} ৳ বাকি</span></div>`).join('');document.getElementById('posCustomer').innerHTML=(data||[]).map(c=>`<option value="${c.id}">${c.name}</option>`).join('');document.getElementById('dhanParty').innerHTML=(data||[]).map(c=>`<option value="${c.id}">${c.name}</option>`).join('');}
+async function addCustomer(){const name=document.getElementById('custName').value;if(!name){alert('নাম দেন');return;}await supabaseClient.from('customers').insert({name,phone:document.getElementById('custPhone').value,village:document.getElementById('custVillage').value});document.getElementById('custName').value='';document.getElementById('custPhone').value='';document.getElementById('custVillage').value='';loadCustomers();}
+function loadPOS(){document.getElementById('posProduct').innerHTML=products.map(p=>`<option value="${p.id}" data-mon="${p.kg_per_mon}" data-price="${p.sell_price}">${p.name} - ${p.sell_price}/মন</option>`).join('');calcPOS();}
+function calcPOS(){const sel=document.getElementById('posProduct');if(!sel.value)return;const opt=sel.selectedOptions[0];const kgPerMon=parseFloat(opt.dataset.mon)||37.5;const kg=parseFloat(document.getElementById('posKg').value)||0;const mon=kg/kgPerMon;let rate=parseFloat(document.getElementById('posRate').value);if(!rate){rate=parseFloat(opt.dataset.price);document.getElementById('posRate').value=rate;}const total=Math.round(mon*rate);document.getElementById('posMon').value=mon.toFixed(2)+' মন';document.getElementById('posTotal').textContent=total+' টাকা';const cash=parseFloat(document.getElementById('posCash').value)||0;document.getElementById('posDue').value=(total-cash)+' টাকা বাকি';}
+async function saveSale(){const custId=document.getElementById('posCustomer').value;const prodId=document.getElementById('posProduct').value;const kg=parseFloat(document.getElementById('posKg').value)||0;const totalText=document.getElementById('posTotal').textContent;const total=parseFloat(totalText)||0;const cash=parseFloat(document.getElementById('posCash').value)||0;const due=total-cash;const prod=products.find(p=>p.id==prodId);if(!kg||!total){alert('KG দেন');return;}const today=new Date().toISOString().slice(0,10);const {data:j}=await supabaseClient.from('journals').insert({entry_date:today,description:`${prod?.name} বিক্রি - ${kg} KG`}).select().single();let lines=[];const cashAcc=accounts.find(a=>a.name.includes('Cash'));const dueAcc=accounts.find(a=>a.name.includes('বাকি পাবো'));const saleAcc=accounts.find(a=>a.name.includes('বিক্রয়'));if(cash>0)lines.push({journal_id:j.id,account_id:cashAcc.id,debit:cash,credit:0});if(due>0)lines.push({journal_id:j.id,account_id:dueAcc.id,debit:due,credit:0});lines.push({journal_id:j.id,account_id:saleAcc.id,debit:0,credit:total});await supabaseClient.from('journal_lines').insert(lines);const cust=customers.find(c=>c.id==custId);if(cust)await supabaseClient.from('customers').update({total_due:(cust?.total_due||0)+due}).eq('id',custId);document.getElementById('posMsg').innerHTML='<b style="color:green">✅ বিক্রি সেভ হয়েছে!</b>';document.getElementById('posKg').value='';document.getElementById('posCash').value='';loadAll();}
+function calcDhan(){const kg=parseFloat(document.getElementById('dhanKg').value)||0;const mon=kg/40;document.getElementById('dhanMon').value=mon.toFixed(2)+' মন';let rate=parseFloat(document.getElementById('dhanRate').value);if(!rate){const sel=document.getElementById('dhanProduct');if(sel&&sel.selectedOptions[0]){rate=parseFloat(sel.selectedOptions[0].dataset.price);document.getElementById('dhanRate').value=rate;}}const cost=parseFloat(document.getElementById('dhanCost').value)||0;const total=Math.round(mon*(rate||0)+cost);document.getElementById('dhanTotal').textContent=total+' টাকা';const cash=parseFloat(document.getElementById('dhanCash').value)||0;document.getElementById('dhanDue').value=(total-cash)+' টাকা বাকি';}
+async function saveDhan(){const type=document.getElementById('dhanType').value;const kg=parseFloat(document.getElementById('dhanKg').value)||0;const total=parseFloat(document.getElementById('dhanTotal').textContent)||0;const cash=parseFloat(document.getElementById('dhanCash').value)||0;const due=total-cash;const prodName=document.getElementById('dhanProduct').value;const today=new Date().toISOString().slice(0,10);if(!kg){alert('KG দেন');return;}const {data:j}=await supabaseClient.from('journals').insert({entry_date:today,description:`${type==='buy'?'কিনা':'বিক্রি'} - ${prodName} - ${kg} KG`}).select().single();const cashAcc=accounts.find(a=>a.name.includes('Cash'));const dueAcc=accounts.find(a=>a.name.includes('বাকি পাবো'));const buyAcc=accounts.find(a=>a.name.includes('কেনা'));const saleAcc=accounts.find(a=>a.name.includes('বিক্রয়'));let lines=[];if(type==='buy'){lines.push({journal_id:j.id,account_id:buyAcc.id,debit:total,credit:0});lines.push({journal_id:j.id,account_id:cashAcc.id,debit:0,credit:total});}else{if(cash>0)lines.push({journal_id:j.id,account_id:cashAcc.id,debit:cash,credit:0});if(due>0)lines.push({journal_id:j.id,account_id:dueAcc.id,debit:due,credit:0});lines.push({journal_id:j.id,account_id:saleAcc.id,debit:0,credit:total});}await supabaseClient.from('journal_lines').insert(lines);document.getElementById('dhanMsg').innerHTML='<b style="color:green">✅ সেভ হয়েছে!</b>';document.getElementById('dhanKg').value='';document.getElementById('dhanCash').value='';loadAll();}
+async function loadDashboard(){const {data}=await supabaseClient.from('journal_lines').select('debit,credit,accounts(name),journals(entry_date)').order('id',{ascending:false}).limit(100);let sale=0,cash=0;(data||[]).forEach(r=>{if(r.accounts?.name?.includes('বিক্রয়'))sale+=r.credit||0;if(r.accounts?.name?.includes('Cash'))cash+=(r.debit||0)-(r.credit||0);});document.getElementById('todaySale').textContent=sale+' ৳';document.getElementById('cashBal').textContent=cash+' ৳';const {data:cust}=await supabaseClient.from('customers').select('total_due');let due=0;(cust||[]).forEach(c=>due+=c.total_due||0);document.getElementById('totalDue').textContent=due+' ৳';}
+document.getElementById('entryDate').valueAsDate=new Date();loadAll();
 </script>
 </body>
 </html>
